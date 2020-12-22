@@ -1,12 +1,13 @@
 package router
 
 import (
-	"github.com/gsy13213009/gin_scaffold/controller"
-	"github.com/gsy13213009/gin_scaffold/middleware"
 	"github.com/e421083458/golang_common/lib"
+	"github.com/e421083458/golang_common/log"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"github.com/gsy13213009/gin_scaffold/controller"
 	"github.com/gsy13213009/gin_scaffold/docs"
+	"github.com/gsy13213009/gin_scaffold/middleware"
 	"github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
 )
@@ -103,5 +104,21 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 	{
 		controller.ApiLoginRegister(apiAuthGroup)
 	}
+
+	adminLoginRouter := router.Group("/admin")
+	store, err := sessions.NewRedisStore(10, "tcp", "localhost:6379", "", []byte("secriet"))
+	if err != nil {
+		log.Fatal("sessions.NewRedisStore err:%v", err)
+	}
+	adminLoginRouter.Use(
+		sessions.Sessions("mysession", store),
+		middleware.RecoveryMiddleware(),
+		middleware.RequestLog(),
+		middleware.TranslationMiddleware(),
+	)
+	{
+		controller.AdminLoginRegister(adminLoginRouter)
+	}
+
 	return router
 }
