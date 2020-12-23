@@ -8,7 +8,7 @@ require (
 	github.com/e421083458/golang_common v1.0.3
 	github.com/e421083458/gorm v1.0.1
 	github.com/garyburd/redigo v1.6.0
-	github.com/gin-gonic/contrib v0.0.0-20190526021735-7fb7810ed2a0
+	github.com/gin-gonic/contrib v0.0.0-20201101042839-6a891bf89f19
 	github.com/gin-gonic/gin v1.4.0
 	github.com/go-playground/locales v0.12.1
 	github.com/go-playground/universal-translator v0.16.0
