@@ -3,6 +3,7 @@ package dto
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gsy13213009/gin_scaffold/public"
+	"time"
 )
 
 type AdminLoginInput struct {
@@ -16,4 +17,10 @@ func (param *AdminLoginInput) BindValidParam(c *gin.Context) error {
 
 type AdminLoginOutput struct {
 	Token string `json:"token" form:"token" comment:"token" example:"token" validate:""`
+}
+
+type AdminSessionInfo struct {
+	ID        int       `json:"id"`
+	UserName  string    `json:"username"`
+	LoginTime time.Time `json:"login_time"`
 }
