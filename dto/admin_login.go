@@ -6,7 +6,7 @@ import (
 )
 
 type AdminLoginInput struct {
-	UserName string `json:"username" form:"username" comment:"姓名" example:"admin" validate:"required"`
+	UserName string `json:"username" form:"username" comment:"姓名" example:"admin" validate:"required,is_valid_username"`
 	Password string `json:"password" form:"password" comment:"密码" example:"123456" validate:"required"`
 }
 

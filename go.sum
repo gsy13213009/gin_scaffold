@@ -37,6 +37,7 @@ github.com/e421083458/golang_common v1.0.3 h1:ZaTx1WY1PK98upRPE6ZCtzbvrKTkjUpUra
 github.com/e421083458/golang_common v1.0.3/go.mod h1:TfZ1djfU2oxqIopHLoDaAfBbk5NkeInTOX3EjXQVBkU=
 github.com/e421083458/gorm v1.0.1 h1:xP3phpVGFa/HUXFK/9UlvVohvrDFdhTZF12XKK+1tJQ=
 github.com/e421083458/gorm v1.0.1/go.mod h1:fKRc3akGVO0fLrVXYIVFtIrDniw2IASHwTJNnffphJg=
+github.com/e421083458/sse v0.1.1 h1:gvCOCgxw3BQ8ps5FohmSaP7OaTZwStK9+5qRQMRxGDA=
 github.com/e421083458/sse v0.1.1/go.mod h1:CSS4w4zFC88opO4oEy1WLMjRe4GzMeEPYB6QkxwAsL8=
 github.com/eapache/go-resiliency v1.1.0/go.mod h1:kFI+JgMyC7bLPUVY133qvEBtVayf5mFgVsvEsIPBvNs=
 github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21/go.mod h1:+020luEh2TKB4/GOp8oxxtq0Daoen/Cii55CzbTV6DU=
