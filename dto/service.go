@@ -29,3 +29,11 @@ type ServiceListItemOutPut struct {
 	Qpd         int64  `json:"qpd" form:"qpd"`
 	TotalNode   int    `json:"total_node" form:"qpd"`
 }
+
+type ServiceDeleteInput struct {
+	ID     int64 `json:"id" form:"id" comment:"服务id" example:"20" validate:"required"`
+}
+
+func (param *ServiceDeleteInput) BindValidParam(c *gin.Context) error {
+	return public.DefaultGetValidParams(c, param)
+}

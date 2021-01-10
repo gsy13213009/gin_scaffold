@@ -13,8 +13,8 @@ type ServiceInfo struct {
 	LoadType    int       `json:"load_type" gorm:"colum:load_type" description:"负载类型 0=http 1=tcp 2=grpc"`
 	ServiceName string    `json:"service_name" gorm:"colum:service_name" description:"服务名称"`
 	ServiceDesc string    `json:"service_desc" gorm:"colum:service_desc" description:"服务描述"`
-	CreatedAt   time.Time `json:"created_at" gorm:"colum:create_at" description:"创建时间"`
-	UpdatedAt   time.Time `json:"updated_at" gorm:"colum:update_at" description:"修改时间"`
+	CreateAt   time.Time `json:"create_at" gorm:"colum:create_at" description:"创建时间"`
+	UpdateAt   time.Time `json:"update_at" gorm:"colum:update_at" description:"修改时间"`
 	IsDelete    int8      `json:"is_delete" gorm:"colum:is_delete" description:"是否删除 0否 1是"`
 }
 
@@ -46,7 +46,7 @@ func (t *ServiceInfo) PageList(c *gin.Context, tx *gorm.DB, param *dto.ServiceLi
 	if param.Info != "" {
 		query = query.Where("(service_name like ? or service_desc like ?)", "%"+param.Info+"%", "%"+param.Info+"%")
 	}
-	if err := query.Limit(param.PageSize).Offset(offset).Find(&list).Error; err != nil && err != gorm.ErrRecordNotFound {
+	if err := query.Limit(param.PageSize).Offset(offset).Order("id desc").Find(&list).Error; err != nil && err != gorm.ErrRecordNotFound {
 		return nil, 0, err
 	}
 	query.Limit(param.PageSize).Offset(offset).Count(&total)
