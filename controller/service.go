@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"errors"
 	"fmt"
 	"github.com/e421083458/golang_common/lib"
 	"github.com/gin-gonic/gin"
@@ -146,11 +147,22 @@ func (service *ServiceController) ServiceDelete(c *gin.Context) {
 // @Produce  json
 // @Param body body dto.ServiceAddInput true "body"
 // @Success 200 {object} middleware.Response{data=string} "success"
-// @Router /service/service_add_http [get]
+// @Router /service/service_add_http [post]
 func (service *ServiceController) ServiceAddHttp(c *gin.Context) {
 	params := &dto.ServiceAddInput{}
-	if err := params.BindValidParam(c);err != nil {
+	if err := params.BindValidParam(c); err != nil {
 		middleware.ResponseError(c, 2000, err)
+		return
+	}
+	tx, err := lib.GetGormPool("default")
+	if err != nil {
+		middleware.ResponseError(c, 2001, err)
+		return
+	}
+	serviceInfo := &dao.ServiceInfo{ServiceName: params.ServiceName}
+
+	if _, err = serviceInfo.Find(c, tx, serviceInfo); err == nil {
+		middleware.ResponseError(c, 2002, errors.New("服务已存在"))
 		return
 	}
 

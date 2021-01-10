@@ -39,10 +39,8 @@ func (param *ServiceDeleteInput) BindValidParam(c *gin.Context) error {
 }
 
 type ServiceAddInput struct {
-	ID                     int64  `json:"id" form:"id" comment:"服务id" example:"20" validate:"required"`
-	ServiceName            string `json:"service_name" form:"service_name" validate:"required"`
-	ServiceDesc            string `json:"service_desc" form:"service_desc" validate:"required"`
-	ServiceId              int64  `json:"service_id" form:"service_id" example:"" validate:"required" comment:"服务id'"`
+	ServiceName            string `json:"service_name" form:"service_name" validate:"required,is_valid_service_name"`
+	ServiceDesc            string `json:"service_desc" form:"service_desc" validate:"required,max=255,min=1"`
 	RuleType               int    `json:"rule_type" form:"rule_type" example:"" validate:"" comment:"匹配类型 0=url前缀url_prefix 1=域名domain"`
 	Rule                   string `json:"rule" form:"rule" example:"" validate:"required" comment:"type=domain表示域名，type=url_prefix时表示url前缀"`
 	NeedHttps              int    `json:"need_https" form:"need_https" example:"" validate:"" comment:"支持https 1=支持'"`
@@ -54,7 +52,7 @@ type ServiceAddInput struct {
 	BlackList              string `json:"black_list" form:"black_list" example:"" validate:"" comment:"黑名单ip"`
 	WhiteList              string `json:"white_list" form:"white_list" example:"" validate:"" comment:"白名单ip"`
 	ClientipFlowLimit      int    `json:"clientip_flow_limit" form:"clientip_flow_limit" example:"" validate:"" comment:"客户端ip限流"`
-	ServiceFlowLimit       int    `json:"service_flow_limit" form:"service_flow_limit" example:"" validate:"required" comment:"服务端限流"`
+	ServiceFlowLimit       int    `json:"service_flow_limit" form:"service_flow_limit" example:"" validate:"" comment:"服务端限流"`
 	RoundType              int    `json:"round_type" form:"round_type" example:"" validate:"" comment:"轮询方式 0=random 1=round-robin 2=weight_round-robin 3=ip_hash"`
 	IpList                 string `json:"ip_list" form:"ip_list" example:"" validate:"required" comment:"ip列表"`
 	WeightList             string `json:"weight_list" form:"weight_list" example:"" validate:"" comment:"BS权重列表"`
