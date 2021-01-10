@@ -17,6 +17,7 @@ func ServiceRegister(group *gin.RouterGroup) {
 	service := &ServiceController{}
 	group.GET("service_list", service.ServiceList)
 	group.GET("service_delete", service.ServiceDelete)
+	group.POST("service_add_http", service.ServiceAddHttp)
 }
 
 // ServiceList godoc
@@ -133,5 +134,25 @@ func (service *ServiceController) ServiceDelete(c *gin.Context) {
 	if err := serviceInfo.Save(c, tx); err != nil {
 		middleware.ResponseError(c, 2003, err)
 	}
+	middleware.ResponseSuccess(c, "")
+}
+
+// ServiceAddHttp  godoc
+// @Summary 服务添加
+// @Description 服务添加
+// @Tags 服务管理
+// @ID /service/service_add_http
+// @Accept  json
+// @Produce  json
+// @Param body body dto.ServiceAddInput true "body"
+// @Success 200 {object} middleware.Response{data=string} "success"
+// @Router /service/service_add_http [get]
+func (service *ServiceController) ServiceAddHttp(c *gin.Context) {
+	params := &dto.ServiceAddInput{}
+	if err := params.BindValidParam(c);err != nil {
+		middleware.ResponseError(c, 2000, err)
+		return
+	}
+
 	middleware.ResponseSuccess(c, "")
 }
