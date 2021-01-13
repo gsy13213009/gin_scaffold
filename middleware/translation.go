@@ -60,7 +60,7 @@ func TranslationMiddleware() gin.HandlerFunc {
 			})
 			// 验证服务名称
 			_ = val.RegisterValidation("is_valid_service_name", func(fl validator.FieldLevel) bool {
-				matched, _ := regexp.Match(`[a-zA-Z0-9_]{6-128}`, []byte(fl.Field().String()))
+				matched, _ := regexp.Match(`[a-zA-Z0-9_]{6,128}`, []byte(fl.Field().String()))
 				return matched
 			})
 			_ = val.RegisterTranslation("is_valid_service_name", trans, func(ut ut.Translator) error {

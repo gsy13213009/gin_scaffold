@@ -5,7 +5,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gsy13213009/gin_scaffold/dto"
 	"github.com/gsy13213009/gin_scaffold/public"
-	"time"
 )
 
 type ServiceInfo struct {
@@ -13,8 +12,8 @@ type ServiceInfo struct {
 	LoadType    int       `json:"load_type" gorm:"colum:load_type" description:"负载类型 0=http 1=tcp 2=grpc"`
 	ServiceName string    `json:"service_name" gorm:"colum:service_name" description:"服务名称"`
 	ServiceDesc string    `json:"service_desc" gorm:"colum:service_desc" description:"服务描述"`
-	CreateAt   time.Time `json:"create_at" gorm:"colum:create_at" description:"创建时间"`
-	UpdateAt   time.Time `json:"update_at" gorm:"colum:update_at" description:"修改时间"`
+	//CreateAt   time.Time `json:"create_at" gorm:"colum:create_at" description:"创建时间"`
+	//UpdateAt   time.Time `json:"update_at" gorm:"colum:update_at" description:"修改时间"`
 	IsDelete    int8      `json:"is_delete" gorm:"colum:is_delete" description:"是否删除 0否 1是"`
 }
 

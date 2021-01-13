@@ -13,7 +13,7 @@ type AccessControl struct {
 	BlackList         string `json:"black_list" gorm:"colunm:black_list" description:"黑名单ip"`
 	WhiteList         string `json:"white_list" gorm:"colunm:white_list" description:"白名单ip"`
 	WhiteHostName     string `json:"white_host_name" gorm:"colunm:white_host_name" description:"白名单主机"`
-	ClientIPFlowLimit int64  `json:"client_flow_limit" gorm:"colunm:client_flow_limit" description:"客户端ip限流"`
+	ClientIPFlowLimit int64  `json:"clientip_flow_limit" gorm:"colunm:clientip_flow_limit" description:"客户端ip限流"`
 	ServiceFlowLimit  int64  `json:"service_flow_limit" gorm:"colunm:service_flow_limit" description:"服务端限流"`
 }
 
